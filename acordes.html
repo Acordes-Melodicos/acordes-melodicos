@@ -149,7 +149,13 @@ fbq('track', 'PageView');
     btn.disabled = true;
     btn.firstChild.textContent = 'Enviando... ';
     var done = false;
-    function go() { if (!done) { done = true; window.location.href = THANKS_URL; } }
+    function go() {
+      if (done) return;
+      done = true;
+      if (window.fbq) window.fbq('track', 'Lead');
+      // pequeña pausa para que el evento de Meta alcance a enviarse antes de cambiar de página
+      setTimeout(function () { window.location.href = THANKS_URL; }, 500);
+    }
     function fail() {
       if (done) return;
       done = true;

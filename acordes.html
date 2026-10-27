@@ -104,8 +104,8 @@
 <script src="/ac-countdown.js"></script>
 <script>
 (function () {
-  // Pega aquí la URL del formulario incrustado de Systeme.io (atributo action del <form>).
-  var SYSTEME_ACTION = '';
+  // Formulario incrustado de Systeme.io (lista de espera de Acordes Melódicos).
+  var SYSTEME_ACTION = 'https://systeme.io/embedded/46116582/subscription';
   var THANKS_URL = '/gracias-acordes';
 
   var form = document.getElementById('ac-form');
@@ -129,20 +129,24 @@
       return;
     }
 
-    var data = new FormData(form);
-    if (data.get('website')) { window.location.href = THANKS_URL; return; }
+    if (form.elements.website.value) { window.location.href = THANKS_URL; return; }
 
-    if (!SYSTEME_ACTION) {
-      showMsg('El formulario todavía no está conectado a Systeme.io.');
-      return;
-    }
+    var data = new FormData();
+    data.append('email', value);
 
     btn.disabled = true;
     btn.firstChild.textContent = 'Enviando... ';
     var done = false;
     function go() { if (!done) { done = true; window.location.href = THANKS_URL; } }
-    setTimeout(go, 4000);
-    fetch(SYSTEME_ACTION, { method: 'POST', body: data, mode: 'no-cors' }).then(go, go);
+    function fail() {
+      if (done) return;
+      done = true;
+      btn.disabled = false;
+      btn.firstChild.textContent = 'Unirme a la lista de espera ';
+      showMsg('No pudimos registrar tu correo. Revisa tu conexión e inténtalo de nuevo.');
+    }
+    setTimeout(go, 6000);
+    fetch(SYSTEME_ACTION, { method: 'POST', body: data, mode: 'no-cors' }).then(go, fail);
   });
 })();
 </script>

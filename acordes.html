@@ -113,6 +113,8 @@ fbq('track', 'PageView');
   <p>&copy; 2026 Acordes Melódicos &middot; Academia</p>
 </footer>
 
+<script src="/ac-config.js"></script>
+<script src="/ac-track.js"></script>
 <script src="/ac-countdown.js"></script>
 <script>
 (function () {
@@ -149,7 +151,12 @@ fbq('track', 'PageView');
     btn.disabled = true;
     btn.firstChild.textContent = 'Enviando... ';
     var done = false;
-    function go() { if (!done) { done = true; window.location.href = THANKS_URL; } }
+    function go() {
+      if (done) return;
+      done = true;
+      if (window.acTrack) window.acTrack('signup');
+      window.location.href = THANKS_URL;
+    }
     function fail() {
       if (done) return;
       done = true;

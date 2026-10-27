@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estadísticas | Acordes Melódicos</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#06080f">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ac-style.css">
+<link rel="stylesheet" href="/ac-stats.css">
+</head>
+<body class="ac-stats-page">
+
+<div class="ac-bar ac-bar-glass">
+  <span class="ac-bar-text"><span class="ac-bar-dot"></span>Panel interno &middot; Solo para el equipo del lanzamiento</span>
+</div>
+
+<main class="ac-container ac-st-wrap">
+
+  <header class="ac-st-head">
+    <div class="ac-brand">
+      <svg class="ac-guitar" viewBox="0 0 40 72" aria-hidden="true">
+        <rect x="17.5" y="1" width="5" height="10" rx="1.5"/>
+        <rect x="19" y="10" width="2" height="26"/>
+        <path d="M20 32c-6 0-9.500 4-9.500 8.500 0 3 1.500 4.500 3 5.500-3 2-5.500 5-5.500 9.500 0 7 5.500 12 12 12s12-5 12-12c0-4.500-2.500-7.500-5.500-9.500 1.500-1 3-2.500 3-5.500C29.500 36 26 32 20 32z"/>
+        <circle cx="20" cy="53" r="4.200" fill="#06080f"/>
+      </svg>
+      <div class="ac-brand-text">
+        <span>Acordes</span>
+        <span class="ac-gold">Melódicos</span>
+        <small>ACADEMIA</small>
+      </div>
+    </div>
+    <h1>Estadísticas del <span class="ac-gold">lanzamiento</span></h1>
+    <p class="ac-st-sub">¿De dónde llegan los registros a la lista de espera? <strong>Pago</strong> (anuncios de Meta) vs <strong>orgánico</strong> (todo lo demás).</p>
+  </header>
+
+  <!-- Acceso -->
+  <section class="ac-card ac-st-gate" id="st-gate">
+    <form id="st-login" novalidate>
+      <label class="ac-form-label" for="st-pass">Contraseña del panel</label>
+      <div class="ac-field">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="3"/><path d="M8 10V7.500a4 4 0 0 1 8 0V10"/></svg>
+        <input type="password" id="st-pass" autocomplete="current-password" placeholder="Escribe la contraseña" required>
+      </div>
+      <button type="submit" class="ac-btn" id="st-enter">Entrar <span>&rarr;</span></button>
+      <p class="ac-form-msg" id="st-gate-msg" role="alert" hidden></p>
+    </form>
+  </section>
+
+  <!-- Panel -->
+  <div id="st-app" hidden>
+
+    <div class="ac-st-toolbar">
+      <div class="ac-st-ranges" role="tablist" aria-label="Rango de fechas">
+        <button type="button" class="ac-st-range" data-days="1">Hoy</button>
+        <button type="button" class="ac-st-range" data-days="7">7 días</button>
+        <button type="button" class="ac-st-range" data-days="30">30 días</button>
+        <button type="button" class="ac-st-range" data-days="all">Todo</button>
+      </div>
+      <div class="ac-st-tools">
+        <span class="ac-st-updated" id="st-updated"></span>
+        <button type="button" class="ac-st-ghost" id="st-refresh">Actualizar</button>
+        <button type="button" class="ac-st-ghost" id="st-logout">Salir</button>
+      </div>
+    </div>
+
+    <p class="ac-form-msg" id="st-msg" role="alert" hidden></p>
+
+    <!-- Resumen -->
+    <section class="ac-st-split ac-st-glass" id="st-split"></section>
+
+    <!-- Pago vs orgánico -->
+    <section class="ac-st-cols" id="st-channels"></section>
+
+    <!-- Evolución diaria -->
+    <section class="ac-st-glass ac-st-block">
+      <div class="ac-st-block-head">
+        <h2>Evolución diaria</h2>
+        <div class="ac-st-seg" role="tablist" aria-label="Métrica del gráfico">
+          <button type="button" class="ac-st-seg-btn is-on" data-metric="signups">Registros</button>
+          <button type="button" class="ac-st-seg-btn" data-metric="visits">Visitas</button>
+        </div>
+      </div>
+      <div class="ac-st-legend"><span><i class="ac-st-dot is-paid"></i>Pago</span><span><i class="ac-st-dot is-org"></i>Orgánico</span></div>
+      <div id="st-chart"></div>
+    </section>
+
+    <!-- Tablas -->
+    <section class="ac-st-cols">
+      <div class="ac-st-glass ac-st-block">
+        <h2>Fuentes de tráfico</h2>
+        <div id="st-sources"></div>
+      </div>
+      <div class="ac-st-glass ac-st-block">
+        <h2>Campañas y anuncios <small>(pago)</small></h2>
+        <div id="st-campaigns"></div>
+      </div>
+    </section>
+
+    <section class="ac-st-cols">
+      <div class="ac-st-glass ac-st-block">
+        <h2>Dispositivos</h2>
+        <div id="st-devices"></div>
+      </div>
+      <div class="ac-st-glass ac-st-block">
+        <h2>Últimos registros <small>(anónimos)</small></h2>
+        <div id="st-recent"></div>
+      </div>
+    </section>
+
+    <p class="ac-st-note" id="st-untagged" hidden></p>
+
+    <!-- Cómo etiquetar -->
+    <section class="ac-st-glass ac-st-block ac-st-help">
+      <h2>Cómo etiquetar los enlaces</h2>
+      <p>El panel separa pago de orgánico según las etiquetas (UTM) del enlace. Sin etiqueta, una visita se cuenta como orgánica.</p>
+
+      <h3>Anuncios de Meta Ads <small>(pago)</small></h3>
+      <p>En cada anuncio, en <em>Parámetros de URL</em> (sección Seguimiento), pega esto:</p>
+      <div class="ac-st-code"><code id="st-utm-ads">utm_source=meta&amp;utm_medium=paid&amp;utm_campaign={{campaign.name}}&amp;utm_content={{ad.name}}</code><button type="button" class="ac-st-copy" data-copy="st-utm-ads">Copiar</button></div>
+
+      <h3>Enlaces orgánicos <small>(opcional, para saber de qué red viene cada registro)</small></h3>
+      <div class="ac-st-code"><code id="st-utm-1"></code><button type="button" class="ac-st-copy" data-copy="st-utm-1">Copiar</button></div>
+      <div class="ac-st-code"><code id="st-utm-2"></code><button type="button" class="ac-st-copy" data-copy="st-utm-2">Copiar</button></div>
+      <div class="ac-st-code"><code id="st-utm-3"></code><button type="button" class="ac-st-copy" data-copy="st-utm-3">Copiar</button></div>
+
+      <h3>Excluir tus propias visitas</h3>
+      <p>Abre este enlace una vez en cada navegador del equipo y esas visitas dejan de contarse:</p>
+      <div class="ac-st-code"><code id="st-utm-off"></code><button type="button" class="ac-st-copy" data-copy="st-utm-off">Copiar</button></div>
+    </section>
+
+  </div>
+
+</main>
+
+<footer class="ac-footer">
+  <p>Uso interno &middot; Acordes Melódicos &middot; Academia</p>
+</footer>
+
+<script src="/ac-config.js"></script>
+<script src="/ac-stats.js"></script>
+</body>
+</html>

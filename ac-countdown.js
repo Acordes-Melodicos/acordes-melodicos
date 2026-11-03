@@ -1,7 +1,7 @@
 (function () {
-  // Gran lanzamiento: miércoles 11 de noviembre de 2026, 8:00 PM hora Colombia y Perú (UTC-5)
+  // Gran lanzamiento: miércoles 25 de noviembre de 2026, 8:00 PM hora Colombia y Perú (UTC-5)
   var DEFAULT_PREFIX = 'Únete a la lista de espera de Acordes Melódicos';
-  var target = Date.parse('2026-11-12T01:00:00Z');
+  var target = Date.parse('2026-11-26T01:00:00Z');
 
   var els = {
     days: document.querySelectorAll('[data-ac="days"]'),

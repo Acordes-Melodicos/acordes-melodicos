@@ -662,7 +662,7 @@ img {
   border: 1.5px solid rgba(160,240,195,0.6);
   background: linear-gradient(180deg, #27bd69 0%, #17a257 50%, #0e8040 100%);
   box-shadow: 0 14px 32px rgba(11,122,59,0.4), inset 0 1px 0 rgba(255,255,255,0.28);
-  animation: acWaPulse 1.8s infinite;
+  animation: acWaPulse 1.4s ease-in-out infinite;
 }
 
 .ac-btn-wa:hover {
@@ -680,9 +680,8 @@ img {
 }
 
 @keyframes acWaPulse {
-  0% { box-shadow: 0 14px 32px rgba(11,122,59,0.4), 0 0 0 0 rgba(19,155,80,0.55); }
-  70% { box-shadow: 0 14px 32px rgba(11,122,59,0.4), 0 0 0 20px rgba(19,155,80,0); }
-  100% { box-shadow: 0 14px 32px rgba(11,122,59,0.4), 0 0 0 0 rgba(19,155,80,0); }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 @media (max-width: 900px) {
@@ -793,9 +792,14 @@ img {
   box-shadow: 0 0 0 5px rgba(12,16,30,0.9);
 }
 
+.ac-thanks .ac-steps-intro {
+  margin: 22px 0 2px;
+  font-size: 15px;
+  color: var(--cream);
+}
+
 .ac-thanks .ac-local {
-  order: 7;
-  margin: -6px 0 18px;
+  margin: 0 0 18px;
   font-size: 13px;
   color: var(--muted);
 }
